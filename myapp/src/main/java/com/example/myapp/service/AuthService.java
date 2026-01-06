@@ -34,4 +34,8 @@ public class AuthService {
                 .map(u -> "Login successful")
                 .orElse("Invalid email or password");
     }
+
+    public java.util.List<User> getAllUsers() {
+        return userRepo.findAll();
+    }
 }

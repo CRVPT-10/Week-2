@@ -1,20 +1,33 @@
 package com.example.myapp.controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.example.myapp.dto.LoginRequest;
 import com.example.myapp.dto.SignupRequest;
 import com.example.myapp.service.AuthService;
+import com.example.myapp.model.User;
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class AuthController {
-@Autowired
-private AuthService authService;
-@PostMapping("/signup")
-public String signup (@RequestBody SignupRequest req) {
-return authService.signup(req);
+    @Autowired
+    private AuthService authService;
+
+    @PostMapping("/signup")
+    public String signup(@RequestBody SignupRequest req) {
+        return authService.signup(req);
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestBody LoginRequest req) {
+        return authService.login(req);
+    }
+
+    @GetMapping("/users")
+    public List<User> getAllUsers() {
+        return authService.getAllUsers();
+    }
 }
-@PostMapping("/login")
-public String login (@RequestBody LoginRequest req) {
-return authService.login(req);
-}
-}
+
+
